@@ -1,0 +1,35 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #ff0000, #0000ff);
+    color: white;
+    background-image: url('images/star.png');
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: 150px 150px;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    font-size: 2em;
+}
+
+#playlist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin: 20px;
+}
+
+.song {
+    background: rgba(255,255,255,0.1);
+    padding: 15px;
+    border-radius: 10px;
+    width: 80%;
+}
+
+audio {
+    width: 100%;
+}

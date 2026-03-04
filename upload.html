@@ -1,0 +1,22 @@
+<h2>Upload Your Song</h2>
+<input type="file" id="fileUpload" accept="audio/*">
+<input type="text" id="title" placeholder="Song Title">
+<button onclick="uploadSong()">Upload</button>
+
+<script>
+function uploadSong() {
+  const file = document.getElementById('fileUpload').files[0];
+  const title = document.getElementById('title').value;
+
+  if (!file || !title) return alert("Enter title & select file");
+
+  const storageRef = storage.ref('songs/' + file.name);
+  storageRef.put(file).then(snapshot => {
+    snapshot.ref.getDownloadURL().then(url => {
+      db.collection('songs').add({ title, url });
+      alert("Uploaded!");
+      location.reload();
+    });
+  });
+}
+</script>

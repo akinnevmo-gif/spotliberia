@@ -8,18 +8,18 @@
 <body>
   <header>
     <h1>🎵 SpotLiberia</h1>
+    <input type="text" id="search" placeholder="Search songs or artists...">
   </header>
 
-  <main>
-    <div id="playlist">
-      <!-- Songs will be dynamically loaded -->
-    </div>
+  <main id="trending">
+    <!-- Song cards dynamically loaded here -->
   </main>
 
   <footer>
     <p>&copy; 2026 SpotLiberia</p>
   </footer>
 
+  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>

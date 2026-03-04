@@ -1,21 +1,31 @@
 <h2>Upload Your Song</h2>
 <input type="file" id="fileUpload" accept="audio/*">
+<input type="file" id="coverUpload" accept="image/*">
 <input type="text" id="title" placeholder="Song Title">
+<input type="text" id="artist" placeholder="Artist Name">
 <button onclick="uploadSong()">Upload</button>
 
 <script>
 function uploadSong() {
   const file = document.getElementById('fileUpload').files[0];
+  const cover = document.getElementById('coverUpload').files[0];
   const title = document.getElementById('title').value;
+  const artist = document.getElementById('artist').value;
 
-  if (!file || !title) return alert("Enter title & select file");
+  if (!file || !cover || !title || !artist) return alert("All fields required");
 
   const storageRef = storage.ref('songs/' + file.name);
-  storageRef.put(file).then(snapshot => {
-    snapshot.ref.getDownloadURL().then(url => {
-      db.collection('songs').add({ title, url });
-      alert("Uploaded!");
-      location.reload();
+  const coverRef = storage.ref('covers/' + cover.name);
+
+  coverRef.put(cover).then(cSnap => {
+    cSnap.ref.getDownloadURL().then(coverURL => {
+      storageRef.put(file).then(snap => {
+        snap.ref.getDownloadURL().then(url => {
+          db.collection('songs').add({ title, artist, url, cover: coverURL });
+          alert("Uploaded successfully!");
+          location.reload();
+        });
+      });
     });
   });
 }
